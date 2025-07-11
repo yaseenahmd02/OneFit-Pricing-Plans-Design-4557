@@ -3,13 +3,16 @@ import { motion } from 'framer-motion';
 import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
-const { FiArrowRight, FiX, FiWhatsapp } = FiIcons;
+const { FiArrowRight, FiX } = FiIcons;
 
 const HeroSection = () => {
   const [showQR, setShowQR] = useState(false);
 
-  const openWhatsApp = () => {
-    window.open('https://wa.link/u793nt', '_blank');
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -23,12 +26,39 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 pt-20">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
-          {/* Left column - Text content */}
+          {/* Reordered: Influencer Image appears first on mobile */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex justify-center lg:justify-end order-first lg:order-last mb-8 lg:mb-0"
+          >
+            <div className="relative">
+              <motion.img
+                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1752253237904-1a1f22b0-6045-4832-a1fe-4beb55a3d5f0-removebg-preview%20%281%29.png"
+                alt="Sabith - Fitness Trainer"
+                className="max-h-[50vh] lg:max-h-[80vh] object-contain floating"
+                animate={{ 
+                  y: [0, -10, 0],
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Enhanced glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-green-500/30 to-transparent rounded-full blur-3xl -z-10"></div>
+            </div>
+          </motion.div>
+
+          {/* Text content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left space-y-8"
+            className="text-center lg:text-left space-y-8 order-last lg:order-first"
           >
             {/* Main Heading */}
             <div className="space-y-4">
@@ -62,7 +92,7 @@ const HeroSection = () => {
               Transform your body and mind with expert guidance, personalized workout plans, and proven results that last.
             </motion.p>
 
-            {/* Stats */}
+            {/* Stats - Updated client count */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -70,7 +100,7 @@ const HeroSection = () => {
               className="grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0"
             >
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-green-500">500+</div>
+                <div className="text-2xl md:text-3xl font-bold text-green-500">5000+</div>
                 <div className="text-sm text-gray-400">Clients</div>
               </div>
               <div className="text-center">
@@ -83,7 +113,7 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Button - Single button with scrolling to pricing */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,52 +121,15 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-md mx-auto lg:mx-0"
             >
               <motion.button
-                onClick={() => setShowQR(true)}
+                onClick={() => scrollToSection('pricing')}
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(34,197,94,0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full text-lg font-semibold flex items-center justify-center gap-3 hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg"
+                className="w-full px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full text-lg font-semibold flex items-center justify-center gap-3 hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg"
               >
                 🔥 Start Your Journey
                 <SafeIcon icon={FiArrowRight} className="w-5 h-5" />
               </motion.button>
-              
-              <motion.button
-                onClick={openWhatsApp}
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(37,211,102,0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-[#25D366] text-white rounded-full text-lg font-semibold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-all duration-300 shadow-lg"
-              >
-                <SafeIcon icon={FiWhatsapp} className="w-5 h-5" />
-                Chat Now
-              </motion.button>
             </motion.div>
-          </motion.div>
-
-          {/* Right column - Influencer Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex justify-center lg:justify-end"
-          >
-            <div className="relative">
-              <motion.img
-                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1752253237904-1a1f22b0-6045-4832-a1fe-4beb55a3d5f0-removebg-preview%20%281%29.png"
-                alt="Sabith - Fitness Trainer"
-                className="max-h-[60vh] lg:max-h-[80vh] object-contain floating"
-                animate={{ 
-                  y: [0, -10, 0],
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-green-500/20 to-transparent rounded-full blur-3xl -z-10"></div>
-            </div>
           </motion.div>
         </div>
       </div>
@@ -181,16 +174,6 @@ const HeroSection = () => {
                   📞 +91 91882 81900
                 </p>
               </div>
-
-              <motion.button
-                onClick={openWhatsApp}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full px-6 py-3 bg-[#25D366] text-white rounded-full text-lg font-semibold flex items-center justify-center gap-2 hover:bg-[#128C7E] transition-colors"
-              >
-                <SafeIcon icon={FiWhatsapp} className="w-5 h-5" />
-                🔗 Chat on WhatsApp
-              </motion.button>
             </div>
           </motion.div>
         </motion.div>

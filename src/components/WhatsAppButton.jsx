@@ -26,7 +26,7 @@ const WhatsAppButton = () => {
         onClick={openWhatsApp}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center group"
+        className="bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center group relative"
       >
         <motion.div
           animate={{ 
@@ -41,6 +41,11 @@ const WhatsAppButton = () => {
         >
           <SafeIcon icon={FiMessageCircle} className="w-7 h-7" />
         </motion.div>
+        
+        {/* Help text below button */}
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs font-medium bg-gray-800 text-white px-2 py-1 rounded">
+          Help
+        </div>
         
         {/* Tooltip */}
         <div className="absolute right-full mr-3 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
