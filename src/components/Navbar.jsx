@@ -50,19 +50,28 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            onClick={() => scrollToSection('pricing')}
-            className="text-white hover:text-green-400 transition-colors font-medium"
+            onClick={() => scrollToSection('exclusive-offer')}
+            className="text-white hover:text-red-400 transition-colors font-medium"
           >
-            Pricing
+            Exclusive Offer
           </motion.button>
           <motion.button
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            onClick={() => scrollToSection('about')}
+            onClick={() => scrollToSection('results')}
             className="text-white hover:text-green-400 transition-colors font-medium"
           >
-            About
+            Results
+          </motion.button>
+          <motion.button
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            onClick={() => scrollToSection('pricing')}
+            className="text-white hover:text-green-400 transition-colors font-medium"
+          >
+            Pricing
           </motion.button>
         </nav>
 
@@ -93,16 +102,22 @@ const Navbar = () => {
               Home
             </button>
             <button
+              onClick={() => scrollToSection('exclusive-offer')}
+              className="text-white hover:text-red-400 transition-colors font-medium text-left"
+            >
+              Exclusive Offer
+            </button>
+            <button
+              onClick={() => scrollToSection('results')}
+              className="text-white hover:text-green-400 transition-colors font-medium text-left"
+            >
+              Results
+            </button>
+            <button
               onClick={() => scrollToSection('pricing')}
               className="text-white hover:text-green-400 transition-colors font-medium text-left"
             >
               Pricing
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-white hover:text-green-400 transition-colors font-medium text-left"
-            >
-              About
             </button>
           </nav>
         </motion.div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import ExclusiveOfferSection from './components/ExclusiveOfferSection';
+import ResultsSection from './components/ResultsSection';
 import PricingSection from './components/PricingSection';
 import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
@@ -37,6 +39,12 @@ function App() {
       <Navbar />
       <div id="hero">
         <HeroSection />
+      </div>
+      <div id="exclusive-offer">
+        <ExclusiveOfferSection />
+      </div>
+      <div id="results">
+        <ResultsSection />
       </div>
       <div id="pricing" ref={pricingRef}>
         <PricingSection />

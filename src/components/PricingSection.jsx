@@ -9,10 +9,31 @@ const PricingSection = () => {
   const [showQR, setShowQR] = useState(false);
 
   const openWhatsApp = () => {
-    window.open('https://wa.link/u793nt', '_blank');
+    window.open('https://wa.me/919188281900?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20fitness%20programs.', '_blank');
+  };
+
+  const openPaymentWhatsApp = () => {
+    window.open('https://wa.me/919188281900?text=Hi%2C%20I%20have%20made%20the%20payment%20for%20the%20fitness%20program.%20Please%20find%20the%20payment%20screenshot%20attached.', '_blank');
   };
 
   const plans = [
+    {
+      id: 'exclusive-1-month',
+      title: '1 Month Package',
+      subtitle: 'Web Exclusive',
+      originalPrice: '1499',
+      offerPrice: '799',
+      features: [
+        'Daily workout videos',
+        'Customised diet plan',
+        'WhatsApp support',
+        'Lose up to 5kg easily',
+        'Quick start guide'
+      ],
+      popular: false,
+      exclusive: true,
+      color: 'from-red-500 to-pink-500'
+    },
     {
       id: 'rec-1-month',
       title: '1 Month Plan',
@@ -102,7 +123,7 @@ const PricingSection = () => {
           </motion.div>
 
           {/* Pricing Cards - Enhanced for better mobile display */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 mb-12">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.id}
@@ -112,13 +133,23 @@ const PricingSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10, scale: 1.02 }}
                 className={`relative bg-white rounded-3xl shadow-xl overflow-hidden border-2 transition-all duration-300 ${
-                  plan.popular 
-                    ? 'border-green-500 ring-4 ring-green-500 ring-opacity-20 shadow-2xl' 
-                    : plan.premium 
-                      ? 'border-yellow-400 ring-4 ring-yellow-400 ring-opacity-20' 
-                      : 'border-gray-200 hover:border-gray-300'
+                  plan.exclusive
+                    ? 'border-red-500 ring-4 ring-red-500 ring-opacity-20 shadow-2xl'
+                    : plan.popular 
+                      ? 'border-green-500 ring-4 ring-green-500 ring-opacity-20 shadow-2xl' 
+                      : plan.premium 
+                        ? 'border-yellow-400 ring-4 ring-yellow-400 ring-opacity-20' 
+                        : 'border-gray-200 hover:border-gray-300'
                 }`}
               >
+                {/* Exclusive Badge */}
+                {plan.exclusive && (
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-bl-2xl text-sm font-bold flex items-center gap-1">
+                    <SafeIcon icon={FiZap} className="w-4 h-4" />
+                    WEB EXCLUSIVE
+                  </div>
+                )}
+
                 {/* Popular Badge */}
                 {plan.popular && (
                   <div className="absolute top-0 right-0 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-bl-2xl text-sm font-bold flex items-center gap-1">
@@ -159,6 +190,11 @@ const PricingSection = () => {
                           ₹{plan.offerPrice}
                         </div>
                         <div className="text-sm text-gray-500">One-time payment</div>
+                        {plan.exclusive && (
+                          <div className="text-sm font-bold text-red-600 mt-1">
+                            Save 47% Today!
+                          </div>
+                        )}
                       </>
                     )}
                   </div>
@@ -170,11 +206,13 @@ const PricingSection = () => {
                         <SafeIcon
                           icon={FiCheck}
                           className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
-                            plan.premium 
-                              ? 'text-yellow-500' 
-                              : plan.popular 
-                                ? 'text-green-500' 
-                                : 'text-blue-500'
+                            plan.exclusive
+                              ? 'text-red-500'
+                              : plan.premium 
+                                ? 'text-yellow-500' 
+                                : plan.popular 
+                                  ? 'text-green-500' 
+                                  : 'text-blue-500'
                           }`}
                         />
                         <span className="text-gray-700 text-sm font-medium">{feature}</span>
@@ -186,11 +224,13 @@ const PricingSection = () => {
                   <button
                     onClick={plan.premium ? openWhatsApp : () => setShowQR(true)}
                     className={`w-full py-4 px-6 rounded-2xl font-bold text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg ${
-                      plan.premium
-                        ? 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600'
-                        : plan.popular
-                          ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
-                          : 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black'
+                      plan.exclusive
+                        ? 'bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600'
+                        : plan.premium
+                          ? 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600'
+                          : plan.popular
+                            ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
+                            : 'bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black'
                     }`}
                   >
                     {plan.premium && <SafeIcon icon={FiWhatsapp} className="w-5 h-5" />}
@@ -211,7 +251,7 @@ const PricingSection = () => {
           >
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-red-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg">
               <SafeIcon icon={FiCalendar} className="w-6 h-6" />
-              Limited Time Offer - Save up to 40%!
+              Limited Time Offer - Save up to 47%!
             </div>
           </motion.div>
         </div>
@@ -250,9 +290,9 @@ const PricingSection = () => {
                 className="w-64 h-64 mx-auto mb-6 rounded-2xl shadow-lg"
               />
               
-              <div className="text-gray-600 text-base mb-8 space-y-2">
-                <p className="font-medium">📱 1. Scan the QR code to make payment</p>
-                <p className="font-medium">💬 2. Send payment screenshot to us</p>
+              <div className="text-gray-600 text-base mb-6 space-y-2">
+                <p className="font-medium">📱 1. Scan QR code to make payment</p>
+                <p className="font-medium">💬 2. Click below to send payment screenshot</p>
                 <div className="bg-gray-50 p-4 rounded-xl mt-4">
                   <p className="font-bold text-gray-800 text-lg">
                     📞 +91 91882 81900
@@ -260,15 +300,21 @@ const PricingSection = () => {
                 </div>
               </div>
 
-              <motion.button
-                onClick={openWhatsApp}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full px-6 py-4 bg-[#25D366] text-white rounded-2xl text-lg font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg"
-              >
-                <SafeIcon icon={FiWhatsapp} className="w-6 h-6" />
-                Send Payment Proof
-              </motion.button>
+              <div className="space-y-3">
+                <motion.button
+                  onClick={openPaymentWhatsApp}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full px-6 py-4 bg-[#25D366] text-white rounded-2xl text-lg font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg"
+                >
+                  <SafeIcon icon={FiWhatsapp} className="w-6 h-6" />
+                  Send Payment Screenshot
+                </motion.button>
+
+                <p className="text-sm text-gray-500">
+                  Click above to open WhatsApp with pre-filled message
+                </p>
+              </div>
             </div>
           </motion.div>
         </motion.div>
