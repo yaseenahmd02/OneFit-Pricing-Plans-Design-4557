@@ -9,11 +9,11 @@ const PricingSection = () => {
   const [showQR, setShowQR] = useState(false);
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/919188281900?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20fitness%20programs.', '_blank');
+    window.open('https://wa.me/919188271900?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20fitness%20programs.', '_blank');
   };
 
   const openPaymentWhatsApp = () => {
-    window.open('https://wa.me/919188281900?text=Hi%2C%20I%20have%20made%20the%20payment%20for%20the%20fitness%20program.%20Please%20find%20the%20payment%20screenshot%20attached.', '_blank');
+    window.open('https://wa.me/919188271900?text=Hi%2C%20I%20have%20made%20the%20payment%20for%20the%20fitness%20program.%20Please%20find%20the%20payment%20screenshot%20attached.', '_blank');
   };
 
   const plans = [
@@ -22,7 +22,7 @@ const PricingSection = () => {
       title: '1 Month Package',
       subtitle: 'Web Exclusive',
       originalPrice: '1499',
-      offerPrice: '799',
+      offerPrice: '899',
       features: [
         'Daily workout videos',
         'Customised diet plan',
@@ -285,7 +285,7 @@ const PricingSection = () => {
               </h3>
               
               <img
-                src="https://quest-media-storage-bucket.s3.us-east-2.amazonaws.com/1752253245204-WhatsApp%20Image%202025-07-11%20at%2022.28.57_a3f76915.jpg"
+                src="https://i.postimg.cc/XJ9NKGQG/Whats-App-Image-2025-12-25-at-10-01-59-AM.jpg"
                 alt="Payment QR Code"
                 className="w-64 h-64 mx-auto mb-6 rounded-2xl shadow-lg"
               />
@@ -295,7 +295,7 @@ const PricingSection = () => {
                 <p className="font-medium">💬 2. Click below to send payment screenshot</p>
                 <div className="bg-gray-50 p-4 rounded-xl mt-4">
                   <p className="font-bold text-gray-800 text-lg">
-                    📞 +91 91882 81900
+                    📞 +91 91882 71900
                   </p>
                 </div>
               </div>
